@@ -6,6 +6,7 @@ class User extends Component {
   }
 
   render() {
+    //displays an h3 which contains the user name.
     return <h3>{this.props.name}</h3>;
   }
 }

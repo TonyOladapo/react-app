@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { addUser } from "../redux/actions/actions";
+import { connect } from "react-redux";
 
 class Form extends Component {
   constructor(props) {
@@ -15,9 +17,14 @@ class Form extends Component {
     });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addUser(this.state.name);
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input
           type="text"
           onChange={this.handleChange}
@@ -29,4 +36,9 @@ class Form extends Component {
   }
 }
 
-export default Form;
+//used to trigger actions in the reducer
+const sendDatatToReducer = {
+  addUser,
+};
+
+export default connect(null, sendDatatToReducer)(Form);
